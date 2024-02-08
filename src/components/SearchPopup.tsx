@@ -93,7 +93,7 @@ export function SearchPopup({ isOpen, setOpen }: Props) {
             <div className="w-screen h-screen md:h-auto md:max-h-[calc(80vh-5rem)] md:w-[500px]">
               <div className="flex flex-col">
                 <div>
-                  <InputText handleSearch={handleSearch} />
+                  <InputText setOpen={setOpen} handleSearch={handleSearch} />
                 </div>
                 <div>
                   <Results
@@ -126,14 +126,20 @@ const Container = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       onClick={(e: any) => e.preventDefault()}
-      className="m-auto justify-center overflow-auto search--scrollable-content transform -translate-y-1/2 fixed shadow-lg border bg-white rounded-lg z-10 flex items-center"
+      className="m-auto flex justify-center top-0 left-0 md:top-[inherit] md:left-[inherit] overflow-auto search--scrollable-content md:transform md:-translate-y-1/2 fixed shadow-lg border bg-white rounded-lg z-10 items-center"
     >
       {children}
     </div>
   );
 };
 
-const InputText = ({ handleSearch }: { handleSearch: any }) => {
+const InputText = ({
+  handleSearch,
+  setOpen,
+}: {
+  handleSearch: any;
+  setOpen: any;
+}) => {
   return (
     <div className="h-16 shadow flex items-center px-3">
       <Search size={18} />
@@ -143,6 +149,7 @@ const InputText = ({ handleSearch }: { handleSearch: any }) => {
         className="border-none shadow-none"
         placeholder="Search posts, tags and authors"
       />
+      <X onClick={() => setOpen(false)} />
     </div>
   );
 };
