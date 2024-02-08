@@ -150,3 +150,24 @@
     #000
   );
 }
+
+.search--scrollable-content {
+  /* Enable scrolling */
+  overflow: auto;
+
+  /* Set the size of the scrollbar */
+  scrollbar-width: thin;
+
+  /* Set the color of the scrollbar */
+  scrollbar-color: rgba(155, 155, 155, 0.7) transparent;
+}
+
+/* For Webkit browsers (Chrome, Safari) */
+.search--scrollable-content::-webkit-scrollbar {
+  width: 3px;
+}
+
+.search--scrollable-content::-webkit-scrollbar-thumb {
+  background-color: rgba(155, 155, 155, 0.7);
+  border-radius: 4px;
+}

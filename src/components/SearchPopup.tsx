@@ -119,7 +119,7 @@ const Container = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       onClick={(e: any) => e.preventDefault()}
-      className="m-auto justify-center overflow-auto transform -translate-y-1/2 fixed shadow-lg border bg-white rounded-lg z-10 flex items-center"
+      className="m-auto justify-center overflow-auto search--scrollable-content transform -translate-y-1/2 fixed shadow-lg border bg-white rounded-lg z-10 flex items-center"
     >
       {children}
     </div>
