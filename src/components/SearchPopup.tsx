@@ -175,98 +175,91 @@ const Results = ({
     input.length > 0;
 
   return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ height: 0 }}
-        animate={{ height: "auto" }}
-        exit={{ height: 0 }}
-        className="overflow-hidden"
-      >
-        {results?.authors.length >= 1 && isLoading === false && (
-          <div className="border-b">
-            <h3 className="text-xs px-5 py-3 font-semibold text-muted-foreground">
-              AUTHORS
-            </h3>
-            <ul>
-              {results?.authors?.map((item: { item: Author }, i: number) => (
-                <li key={i}>
-                  <LinkWithReset
-                    href={"/author/" + item.item.slug}
-                    className="hover:bg-neutral-100 active:bg-neutral-100 focus:bg-neutral-100 block cursor-pointer px-5 py-3"
-                  >
-                    <h1 className="flex gap-3 items-center">
-                      <Avatar className="w-7 h-7">
-                        <AvatarImage src={item.item.profile_image || ""} />
-                        <AvatarFallback>?</AvatarFallback>
-                      </Avatar>
-                      {item.item?.name}
-                    </h1>
-                  </LinkWithReset>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-        {results?.tags.length >= 1 && isLoading === false && (
-          <div className="border-b">
-            <h3 className="text-xs px-5 py-3 font-semibold text-muted-foreground">
-              TAGS
-            </h3>
-            <ul>
-              {results?.tags?.map((item: { item: Tag }, i: number) => (
-                <li key={i}>
-                  <LinkWithReset
-                    href={"/tag/" + item.item.slug}
-                    className="hover:bg-neutral-100 active:bg-neutral-100 focus:bg-neutral-100 cursor-pointer block px-5 py-3"
-                  >
-                    <h1>
-                      <span className="text-sm text-muted-foreground font-semibold mr-3">
-                        #
-                      </span>
-                      {item.item?.name}
-                    </h1>
-                  </LinkWithReset>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-        {results?.posts.length >= 1 && isLoading === false && (
-          <div>
-            <h3 className="text-xs px-5 py-3 font-semibold text-muted-foreground">
-              POSTS
-            </h3>
-            <ul>
-              {results?.posts?.map((item: { item: Post }, i: number) => (
-                <li key={i}>
-                  <LinkWithReset
-                    href={"/article/" + item.item.slug}
-                    className="hover:bg-neutral-100 cursor-pointer block px-5 py-3 active:bg-neutral-100 focus:bg-neutral-100"
-                  >
-                    <h1>{item.item?.title}</h1>
-                    <p className="text-xs text-muted-foreground truncate">
-                      {item.item?.excerpt}
-                    </p>
-                  </LinkWithReset>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-        {isLoading === true && (
-          <div className="flex text-sm text-center items-center gap-3 flex-col mx-auto p-20">
-            <Loader2 size={30} className="animate-spin" />Η αναζήτηση φορτώνει.
-            Παρακαλώ περιμένετε...
-          </div>
-        )}
-        {noResults && (
-          <div className="flex text-sm text-center items-center gap-3 flex-col mx-auto p-20">
-            <X size={30} />
-            Δεν βρέθηκαν αποτελέσματα.
-            <br /> Δοκιμάστε ξανά με διαφορετικό όρο αναζήτησης.
-          </div>
-        )}
-      </motion.div>
-    </AnimatePresence>
+    <div className="overflow-hidden">
+      {results?.authors.length >= 1 && isLoading === false && (
+        <div className="border-b">
+          <h3 className="text-xs px-5 py-3 font-semibold text-muted-foreground">
+            AUTHORS
+          </h3>
+          <ul>
+            {results?.authors?.map((item: { item: Author }, i: number) => (
+              <li key={i}>
+                <LinkWithReset
+                  href={"/author/" + item.item.slug}
+                  className="hover:bg-neutral-100 active:bg-neutral-100 focus:bg-neutral-100 block cursor-pointer px-5 py-3"
+                >
+                  <h1 className="flex gap-3 items-center">
+                    <Avatar className="w-7 h-7">
+                      <AvatarImage src={item.item.profile_image || ""} />
+                      <AvatarFallback>?</AvatarFallback>
+                    </Avatar>
+                    {item.item?.name}
+                  </h1>
+                </LinkWithReset>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {results?.tags.length >= 1 && isLoading === false && (
+        <div className="border-b">
+          <h3 className="text-xs px-5 py-3 font-semibold text-muted-foreground">
+            TAGS
+          </h3>
+          <ul>
+            {results?.tags?.map((item: { item: Tag }, i: number) => (
+              <li key={i}>
+                <LinkWithReset
+                  href={"/tag/" + item.item.slug}
+                  className="hover:bg-neutral-100 active:bg-neutral-100 focus:bg-neutral-100 cursor-pointer block px-5 py-3"
+                >
+                  <h1>
+                    <span className="text-sm text-muted-foreground font-semibold mr-3">
+                      #
+                    </span>
+                    {item.item?.name}
+                  </h1>
+                </LinkWithReset>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {results?.posts.length >= 1 && isLoading === false && (
+        <div>
+          <h3 className="text-xs px-5 py-3 font-semibold text-muted-foreground">
+            POSTS
+          </h3>
+          <ul>
+            {results?.posts?.map((item: { item: Post }, i: number) => (
+              <li key={i}>
+                <LinkWithReset
+                  href={"/article/" + item.item.slug}
+                  className="hover:bg-neutral-100 cursor-pointer block px-5 py-3 active:bg-neutral-100 focus:bg-neutral-100"
+                >
+                  <h1>{item.item?.title}</h1>
+                  <p className="text-xs text-muted-foreground truncate">
+                    {item.item?.excerpt}
+                  </p>
+                </LinkWithReset>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {isLoading === true && (
+        <div className="flex text-sm text-center items-center gap-3 flex-col mx-auto p-20">
+          <Loader2 size={30} className="animate-spin" />Η αναζήτηση φορτώνει.
+          Παρακαλώ περιμένετε...
+        </div>
+      )}
+      {noResults && (
+        <div className="flex text-sm text-center items-center gap-3 flex-col mx-auto p-20">
+          <X size={30} />
+          Δεν βρέθηκαν αποτελέσματα.
+          <br /> Δοκιμάστε ξανά με διαφορετικό όρο αναζήτησης.
+        </div>
+      )}
+    </div>
   );
 };
