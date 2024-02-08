@@ -56,7 +56,7 @@ const page: FC<pageProps> = async ({ params }) => {
           />
         </div>
       </div>
-      <div className="max-w-[90rem] mx-auto overflow-hidden mt-5">
+      <div className="max-w-5xl mx-auto overflow-hidden mt-5">
         <Thumbnail
           credits={body.feature_image_caption}
           alt={body.feature_image_alt as string}
