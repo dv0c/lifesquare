@@ -149,7 +149,7 @@ const InputText = ({
         className="border-none shadow-none"
         placeholder="Search posts, tags and authors"
       />
-      <X onClick={() => setOpen(false)} />
+      <X className="cursor-pointer" size={20} onClick={() => setOpen(false)} />
     </div>
   );
 };
