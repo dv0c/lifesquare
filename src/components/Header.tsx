@@ -8,7 +8,7 @@ export const Header = () => {
     <header>
       <div className="pt-[2.5vh] justify-center flex min-h[60px] items-center gap-7 pr-[5vw] pl-[5vh]">
         <Link href={"/"}>
-          <Image src={"/logo_black.png"} alt="logo" width={150} height={34} />
+          <Image src={"/logo_black.webp"} alt="logo" width={150} height={34} />
         </Link>
         {/* <div className="flex items-center">
           <Button variant={"ghost"}>
