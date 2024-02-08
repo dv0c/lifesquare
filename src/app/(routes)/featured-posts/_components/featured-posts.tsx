@@ -29,7 +29,7 @@ const FeaturedPosts: FC<FeaturedPosts> = () => {
       setData(data);
       setLoading(false);
     });
-  }, [currentPage]);
+  }, [currentPage, limit]);
 
   return (
     <>

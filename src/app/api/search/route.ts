@@ -1,7 +1,7 @@
 import { api } from "@/lib/api";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(res: Response) {
+export async function GET(req: NextRequest) {
   const { data: dt } = await api("tags", {});
   const { data: da } = await api("authors", {});
   const { data: dp } = await api("posts", {});
@@ -14,7 +14,6 @@ export async function GET(res: Response) {
     authors: authors,
     tags: tags,
   };
-  // const data = [...tags, ...authors, ...posts];
 
   return NextResponse.json(data);
 }
