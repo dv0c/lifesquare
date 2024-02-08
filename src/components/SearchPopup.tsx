@@ -30,7 +30,6 @@ export function SearchPopup({ isOpen, setOpen }: Props) {
         setLoading(false);
       })
       .finally(() => setLoading(false));
-    console.log(isLoading);
   }, []);
 
   const handleSearch = (event: any) => {
@@ -45,15 +44,15 @@ export function SearchPopup({ isOpen, setOpen }: Props) {
     }
 
     const postOptions = {
-      keys: ["title", "excerpt", "slug"], // Specify the property to search within posts
-      includeScore: true, // Include the score for sorting
+      keys: ["title", "excerpt", "slug"],
+      includeScore: true,
     };
     const tagOptions = {
-      keys: ["name", "slug"], // Specify the property to search within tags
-      includeScore: true, // Include the score for sorting
+      keys: ["name", "slug"],
+      includeScore: true,
     };
     const authorOptions = {
-      keys: ["name", "slug"], // Specify the property to search within authors
+      keys: ["name", "slug"],
       includeScore: true, // Include the score for sorting
     };
 
@@ -70,7 +69,6 @@ export function SearchPopup({ isOpen, setOpen }: Props) {
       tags: tagResults,
       authors: authorResults,
     });
-    console.log(input);
   };
 
   return (
@@ -111,7 +109,7 @@ const Container = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       onClick={(e: any) => e.preventDefault()}
-      className="m-auto justify-center overflow-auto transform -translate-y-1/2 fixed shadow bg-white rounded-lg z-10 flex items-center"
+      className="m-auto justify-center overflow-auto transform -translate-y-1/2 fixed shadow-lg border bg-white rounded-lg z-10 flex items-center"
     >
       {children}
     </div>
