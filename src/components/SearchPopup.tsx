@@ -77,7 +77,7 @@ export function SearchPopup({ isOpen, setOpen }: Props) {
         <>
           <Backdrop onClick={() => setOpen(!isOpen)} />
           <Container>
-            <div className="w-screen h-screen md:h-auto md:max-h-[800px] md:w-[500px]">
+            <div className="w-screen h-screen md:h-auto md:max-h-[calc(80vh-5rem)] md:w-[500px]">
               <div className="flex flex-col">
                 <div>
                   <InputText handleSearch={handleSearch} />
