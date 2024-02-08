@@ -1,14 +1,15 @@
 "use client";
 
-import { Ghost, Search } from "lucide-react";
-import { Input } from "./ui/input";
-import { useEffect, useState } from "react";
+import { Author, Post, Tag } from "@/types";
 import axios from "axios";
 import Fuse from "fuse.js";
-import { Author, Post, Tag } from "@/types";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { useRouter } from "next/navigation";
+import { Ghost, Search } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Input } from "./ui/input";
+
+import { motion } from "framer-motion";
 
 interface Props {
   isOpen: any;
@@ -97,9 +98,11 @@ export function SearchPopup({ isOpen, setOpen }: Props) {
 
 const Backdrop = ({ onClick }: { onClick: any }) => {
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       onClick={onClick}
-      className="fixed top-0 z-10 left-0 w-screen h-screen bg-black/30"
+      className="fixed top-0 z-10 left-0 w-screen h-screen bg-gray-400/50"
     />
   );
 };
@@ -107,7 +110,7 @@ const Backdrop = ({ onClick }: { onClick: any }) => {
 const Container = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
-      onClick={(e) => e.preventDefault()}
+      onClick={(e: any) => e.preventDefault()}
       className="m-auto justify-center overflow-auto transform -translate-y-1/2 fixed shadow bg-white rounded-lg z-10 flex items-center"
     >
       {children}
@@ -152,7 +155,7 @@ const Results = ({
               <li key={i}>
                 <Link
                   href={"/author/" + item.item.slug}
-                  className="hover:bg-neutral-100 block cursor-pointer px-5 py-3"
+                  className="hover:bg-neutral-100 active:bg-neutral-100 focus:bg-neutral-100 block cursor-pointer px-5 py-3"
                 >
                   <h1 className="flex gap-3 items-center">
                     <Avatar className="w-7 h-7">
@@ -177,7 +180,7 @@ const Results = ({
               <li key={i}>
                 <Link
                   href={"/tag/" + item.item.slug}
-                  className="hover:bg-neutral-100 cursor-pointer block px-5 py-3"
+                  className="hover:bg-neutral-100 active:bg-neutral-100 focus:bg-neutral-100 cursor-pointer block px-5 py-3"
                 >
                   <h1>
                     <span className="text-sm text-muted-foreground font-semibold mr-3">
@@ -201,7 +204,7 @@ const Results = ({
               <li key={i}>
                 <Link
                   href={"/article/" + item.item.slug}
-                  className="hover:bg-neutral-100 cursor-pointer block px-5 py-3"
+                  className="hover:bg-neutral-100 cursor-pointer block px-5 py-3 active:bg-neutral-100 focus:bg-neutral-100"
                 >
                   <h1>{item.item?.title}</h1>
                   <p className="text-xs text-muted-foreground truncate">

@@ -1,9 +1,23 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SearchPopup } from "./SearchPopup";
 
 export const SearchBar = () => {
   const [isOpen, setOpen] = useState(false);
+
+  useEffect(() => {
+    const handleEsc = (event: any) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleEsc);
+
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, []);
+
   return (
     <>
       <div
