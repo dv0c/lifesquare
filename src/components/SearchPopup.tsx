@@ -79,7 +79,7 @@ export function SearchPopup({ isOpen, setOpen }: Props) {
           <Container>
             <div className="w-screen h-screen md:h-auto md:max-h-[800px] md:w-[500px]">
               <div className="flex flex-col">
-                <div className="">
+                <div>
                   <InputText handleSearch={handleSearch} />
                 </div>
                 <div>
@@ -141,10 +141,6 @@ const Results = ({
   };
   isLoading: boolean;
 }) => {
-  const handleClick = () => {
-    document.body.style.overflow = "hidden";
-  };
-
   return (
     <>
       {results?.authors.length >= 1 && isLoading === false && (
