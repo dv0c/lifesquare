@@ -22,6 +22,16 @@ export function SearchPopup({ isOpen, setOpen }: Props) {
   const [isLoading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
+    if (!isOpen) {
+      setInput({
+        posts: [],
+        authors: [],
+        tags: [],
+      });
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
     setLoading(true);
     axios
       .get("/api/search")
