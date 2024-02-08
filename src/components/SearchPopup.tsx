@@ -4,12 +4,12 @@ import { Author, Post, Tag } from "@/types";
 import axios from "axios";
 import Fuse from "fuse.js";
 import { Ghost, Search } from "lucide-react";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Input } from "./ui/input";
 
 import { motion } from "framer-motion";
+import LinkWithReset from "./LinkWithReset";
 
 interface Props {
   isOpen: any;
@@ -141,6 +141,10 @@ const Results = ({
   };
   isLoading: boolean;
 }) => {
+  const handleClick = () => {
+    document.body.style.overflow = "hidden";
+  };
+
   return (
     <>
       {results?.authors.length >= 1 && isLoading === false && (
@@ -151,7 +155,7 @@ const Results = ({
           <ul>
             {results?.authors?.map((item: { item: Author }, i: number) => (
               <li key={i}>
-                <Link
+                <LinkWithReset
                   href={"/author/" + item.item.slug}
                   className="hover:bg-neutral-100 active:bg-neutral-100 focus:bg-neutral-100 block cursor-pointer px-5 py-3"
                 >
@@ -162,7 +166,7 @@ const Results = ({
                     </Avatar>
                     {item.item?.name}
                   </h1>
-                </Link>
+                </LinkWithReset>
               </li>
             ))}
           </ul>
@@ -176,7 +180,7 @@ const Results = ({
           <ul>
             {results?.tags?.map((item: { item: Tag }, i: number) => (
               <li key={i}>
-                <Link
+                <LinkWithReset
                   href={"/tag/" + item.item.slug}
                   className="hover:bg-neutral-100 active:bg-neutral-100 focus:bg-neutral-100 cursor-pointer block px-5 py-3"
                 >
@@ -186,7 +190,7 @@ const Results = ({
                     </span>
                     {item.item?.name}
                   </h1>
-                </Link>
+                </LinkWithReset>
               </li>
             ))}
           </ul>
@@ -200,7 +204,7 @@ const Results = ({
           <ul>
             {results?.posts?.map((item: { item: Post }, i: number) => (
               <li key={i}>
-                <Link
+                <LinkWithReset
                   href={"/article/" + item.item.slug}
                   className="hover:bg-neutral-100 cursor-pointer block px-5 py-3 active:bg-neutral-100 focus:bg-neutral-100"
                 >
@@ -208,7 +212,7 @@ const Results = ({
                   <p className="text-xs text-muted-foreground truncate">
                     {item.item?.excerpt}
                   </p>
-                </Link>
+                </LinkWithReset>
               </li>
             ))}
           </ul>

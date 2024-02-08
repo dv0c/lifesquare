@@ -6,6 +6,12 @@ export const SearchBar = () => {
   const [isOpen, setOpen] = useState(false);
 
   useEffect(() => {
+    isOpen
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "auto");
+  }, [isOpen]);
+
+  useEffect(() => {
     const handleEsc = (event: any) => {
       if (event.key === "Escape") {
         setOpen(false);
