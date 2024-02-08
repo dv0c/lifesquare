@@ -2178,6 +2178,7 @@ unless a heading is the very first element in the post content */
 
   .gh-content :is(ul, ol) {
     padding-left: 28px;
+    list-style-type: disc;
   }
 
   .gh-content :is(li + li, li :is(ul, ol)) {
@@ -2322,7 +2323,7 @@ unless a heading is the very first element in the post content */
   }
 
   .kg-image-card {
-    @apply rounded-2xl overflow-hidden bg-gray-200;
+    @apply rounded-2xl overflow-hidden;
   }
 
   /* Toggle */
