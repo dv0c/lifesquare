@@ -80,8 +80,8 @@ export function SearchPopup({ isOpen, setOpen }: Props) {
     const tagFuse = new Fuse(data.tags, tagOptions);
     const authorFuse = new Fuse(data.authors, authorOptions);
 
-    const postResults = postFuse.search(value);
-    const tagResults = tagFuse.search(value);
+    const postResults = postFuse.search(value, { limit: 5 });
+    const tagResults = tagFuse.search(value, { limit: 3 });
     const authorResults = authorFuse.search(value);
 
     setInput({
