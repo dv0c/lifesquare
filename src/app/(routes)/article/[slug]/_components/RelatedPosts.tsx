@@ -22,7 +22,7 @@ const RelatedPosts: FC<RelatedPostsProps> = async ({ category, postSlug }) => {
 
   return filteredData.length ? (
     <div className="border-t pt-20 my-10">
-      <h1 className="font-bold mb-5">Related Posts</h1>
+      <h1 className="font-bold mb-5">YOU MIGHT ALSO LIKE</h1>
       <PostWrapper>
         {filteredData.map((item: any, i: number) => (
           <Post.Small post={item} key={i} />

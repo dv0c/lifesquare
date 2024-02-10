@@ -3,13 +3,14 @@
 import { Author, Post, Tag } from "@/types";
 import axios from "axios";
 import Fuse from "fuse.js";
-import { Ghost, Loader2, Search, X } from "lucide-react";
+import { Ghost, GhostIcon, Loader2, Search, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Input } from "./ui/input";
 
 import { AnimatePresence, motion } from "framer-motion";
 import LinkWithReset from "./LinkWithReset";
+import { setInterval } from "timers";
 
 interface Props {
   isOpen: any;
@@ -21,6 +22,19 @@ export function SearchPopup({ isOpen, setOpen }: Props) {
   const [input, setInput] = useState<any>(data);
   const [isLoading, setLoading] = useState<boolean>(false);
   const [value, setValue] = useState("");
+  const [error, setError] = useState(false);
+
+  async function fetchData() {
+    setLoading(true);
+    await axios
+      .get("/api/search")
+      .then((res) => {
+        setData(res.data);
+        setLoading(false);
+      })
+      .finally(() => setLoading(false))
+      .catch((res) => setError(true));
+  }
 
   useEffect(() => {
     if (!isOpen) {
@@ -34,14 +48,7 @@ export function SearchPopup({ isOpen, setOpen }: Props) {
   }, [isOpen]);
 
   useEffect(() => {
-    setLoading(true);
-    axios
-      .get("/api/search")
-      .then((res) => {
-        setData(res.data);
-        setLoading(false);
-      })
-      .finally(() => setLoading(false));
+    fetchData();
   }, []);
 
   const handleSearch = (event: any) => {
@@ -57,7 +64,7 @@ export function SearchPopup({ isOpen, setOpen }: Props) {
     }
 
     const postOptions = {
-      keys: ["title", "excerpt", "slug"],
+      keys: ["title", "excerpt", "slug", "authors[0].name"],
       includeScore: true,
     };
     const tagOptions = {
@@ -93,10 +100,16 @@ export function SearchPopup({ isOpen, setOpen }: Props) {
             <div className="w-screen h-screen md:h-auto md:max-h-[calc(80vh-5rem)] md:w-[500px]">
               <div className="flex flex-col">
                 <div>
-                  <InputText setOpen={setOpen} handleSearch={handleSearch} />
+                  <InputText
+                    loading={isLoading}
+                    error={error}
+                    setOpen={setOpen}
+                    handleSearch={handleSearch}
+                  />
                 </div>
                 <div>
                   <Results
+                    error={error}
                     input={value}
                     isLoading={isLoading}
                     results={input}
@@ -136,14 +149,20 @@ const Container = ({ children }: { children: React.ReactNode }) => {
 const InputText = ({
   handleSearch,
   setOpen,
+  error,
+  loading,
 }: {
   handleSearch: any;
   setOpen: any;
+  error: boolean;
+  loading: boolean;
 }) => {
   return (
     <div className="h-16 shadow flex items-center px-3">
+      {/* {loading ? <Loader2 className="animate-spin" /> : <Search size={18} />} */}
       <Search size={18} />
       <Input
+        disabled={error || loading}
         autoFocus
         onChange={handleSearch}
         className="border-none shadow-none"
@@ -158,6 +177,7 @@ const Results = ({
   results,
   isLoading,
   input,
+  error,
 }: {
   results: {
     posts: [{ item: Post }];
@@ -166,6 +186,7 @@ const Results = ({
   };
   input: any;
   isLoading: boolean;
+  error: boolean;
 }) => {
   const noResults =
     !results?.posts.length &&
@@ -253,11 +274,18 @@ const Results = ({
           Παρακαλώ περιμένετε...
         </div>
       )}
-      {noResults && (
+      {noResults && !error && (
         <div className="flex text-sm text-center items-center gap-3 flex-col mx-auto p-20">
           <X size={30} />
           Δεν βρέθηκαν αποτελέσματα.
           <br /> Δοκιμάστε ξανά με διαφορετικό όρο αναζήτησης.
+        </div>
+      )}
+      {error && (
+        <div className="flex text-sm text-center items-center gap-3 flex-col mx-auto p-20">
+          <GhostIcon size={30} />
+          Αυτη την στιγμη η αναζήτηση δεν ειναι διαθέσιμη.
+          <br /> Δοκιμάστε ξανά αργώτερα.
         </div>
       )}
     </div>
