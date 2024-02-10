@@ -57,9 +57,9 @@ const Post = {
             </Avatar>
             <Link
               href={"/author/" + post.authors[0].slug}
-              className="flex flex-col"
+              className="flex flex-col group"
             >
-              <span className="text-xs font-semibold">
+              <span className="text-xs font-semibold group-hover:underline">
                 by {post.authors[0].name}
               </span>
               <span className="text-xs">
@@ -120,7 +120,7 @@ const Post = {
                 <div className="flex flex-col">
                   <Link
                     href={"/author/" + post.authors[0].slug}
-                    className="text-xs"
+                    className="text-xs  hover:underline"
                   >
                     by {post.authors[0].name}
                   </Link>
@@ -170,7 +170,7 @@ const Post = {
                 <div className="flex flex-col">
                   <Link
                     href={"/author/" + post.authors[0].slug}
-                    className="text-xs"
+                    className="text-xs hover:underline"
                   >
                     by {post.authors[0].name}
                   </Link>
