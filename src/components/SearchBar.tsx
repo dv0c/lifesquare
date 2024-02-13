@@ -24,7 +24,7 @@ export const SearchBar = () => {
       }
     };
     window.addEventListener("keydown", handleEsc);
-    window.addEventListener("keydown", CntrlK);
+    window.addEventListener("keyup", CntrlK);
 
     return () => {
       window.removeEventListener("keydown", handleEsc);
