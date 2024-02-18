@@ -1,7 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "./ui/button";
-import { Search } from "lucide-react";
 
 export const Header = () => {
   return (
@@ -10,14 +8,6 @@ export const Header = () => {
         <Link href={"/"}>
           <Image src={"/logo_black.png"} alt="logo" width={150} height={34} />
         </Link>
-        {/* <div className="flex items-center">
-          <Button variant={"ghost"}>
-            <Search size={20} />
-          </Button>
-          <Link href={"/"} className="font-semibold">
-            Sign in
-          </Link>
-        </div> */}
       </div>
     </header>
   );

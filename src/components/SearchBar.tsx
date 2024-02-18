@@ -16,15 +16,23 @@ export const SearchBar = () => {
   }, [isOpen]);
 
   useEffect(() => {
+
+    const CntrlK = (event: any) => {
+      event.preventDefault();
+      if(event.key === "k" && event.ctrlKey) setOpen(true)  
+    }
+
     const handleEsc = (event: any) => {
       if (event.key === "Escape") {
         setOpen(false);
       }
     };
     window.addEventListener("keydown", handleEsc);
+    window.addEventListener("keyup", CntrlK);
 
     return () => {
       window.removeEventListener("keydown", handleEsc);
+      window.removeEventListener("keydown", CntrlK);
     };
   }, []);
 

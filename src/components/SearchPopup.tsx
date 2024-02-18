@@ -3,14 +3,13 @@
 import { Author, Post, Tag } from "@/types";
 import axios from "axios";
 import Fuse from "fuse.js";
-import { Ghost, GhostIcon, Loader2, Search, X } from "lucide-react";
+import { GhostIcon, Loader2, Search, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Input } from "./ui/input";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import LinkWithReset from "./LinkWithReset";
-import { setInterval } from "timers";
 
 interface Props {
   isOpen: any;
