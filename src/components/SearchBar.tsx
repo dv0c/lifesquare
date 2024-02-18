@@ -1,14 +1,18 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { SearchPopup } from "./SearchPopup";
 
 export const SearchBar = () => {
   const [isOpen, setOpen] = useState(false);
 
   useEffect(() => {
-    isOpen
-      ? (document.body.style.overflow = "hidden")
-      : (document.body.style.overflow = "auto");
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.style.paddingRight = "17px";
+    } else {
+      document.body.style.overflow = "auto";
+      document.body.style.paddingRight = "0px";
+    }
   }, [isOpen]);
 
   useEffect(() => {
@@ -47,7 +51,9 @@ export const SearchBar = () => {
           </svg>
         </span>
       </div>
-      <SearchPopup setOpen={setOpen} isOpen={isOpen} />
+      <Suspense fallback={<div />}>
+        <SearchPopup setOpen={setOpen} isOpen={isOpen} />
+      </Suspense>
     </>
   );
 };
