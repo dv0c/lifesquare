@@ -1,5 +1,6 @@
 import { api } from "@/lib/api";
 import { PostContainer } from "./PostContainer";
+import { Suspense } from "react";
 
 const PreviousPosts = async () => {
   return (
