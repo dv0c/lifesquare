@@ -2,7 +2,7 @@ import { api } from "@/lib/api";
 import { Post, PrimaryAuthor, Tag } from "@/types";
 import { notFound } from "next/navigation";
 import { env } from "process";
-import { FC, Suspense } from "react";
+import { FC } from "react";
 import Content from "./_components/Content";
 import Creator from "./_components/Creator";
 import RelatedPosts from "./_components/RelatedPosts";
@@ -10,7 +10,6 @@ import Share from "./_components/Share";
 import Sidebar from "./_components/Sidebar";
 import Thumbnail from "./_components/Thumbnail";
 import Heading from "./_components/heading";
-import { Loader2 } from "lucide-react";
 
 interface pageProps {
   params: {
