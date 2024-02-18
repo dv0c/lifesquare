@@ -80,7 +80,7 @@ const page: FC<pageProps> = async ({ params }) => {
           </div>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto overflow-hidden">
+      <div className="max-w-5xl mx-auto overflow-hidden">
         {body?.tags[0]?.slug && (
           <RelatedPosts postSlug={body.slug} category={body.tags[0].slug} />
         )}
